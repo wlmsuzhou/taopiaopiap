@@ -2,7 +2,7 @@
     <div class="foot">
         <ul>
             <li>
-                <img  src="../assets/images/hno.svg" alt="">>
+                <img  src="../assets/images/hno.svg" alt="">
                 <div>电影</div>
             </li>
             <li>

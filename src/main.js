@@ -5,6 +5,11 @@ import App from './App'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+import VueLazyLoad from 'vue-lazyload'
+Vue.use(VueLazyLoad,{
+    error:'./static/error.png',
+    loading:'./static/loading.png'
+})
 Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper)
 /* eslint-disable no-new */

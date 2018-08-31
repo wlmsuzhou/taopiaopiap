@@ -12,19 +12,23 @@
                 <span>即将上映</span>
             </div>
         </header>
-        <div class="swpier">
-            <swiper :options='swiperOption' ref="mySwiper">
-                <swiper-slide v-for="img in imgs" :key='img.id'>
-                    <img :src="img.smallPicUrl" alt="">
-                </swiper-slide>
-            </swiper>
-
+        <div class="hot">
+            <div class="swpier">
+                <swiper :options='swiperOption' ref="mySwiper" v-if="imgs.length">
+                    <swiper-slide v-for="img in imgs" :key='img.id' class="">
+                        <!-- <img :src="img.smallPicUrl" alt=""> -->
+                        <div class="swiperImage" v-lazy:background-image="img.smallPicUrl"></div>
+                    </swiper-slide>
+                </swiper>
+            </div>
+            <hot></hot>
         </div>
     </div>
 </template>
 
 <script>
 import city from '../components/Home/city'
+import hot from '../components/Home/hot'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import { getSwiper, getHotList } from '../service/myservice'
 export default {
@@ -32,10 +36,14 @@ export default {
         return {
             imgs:[],
             swiperOption: {
-                loop: true,
+                // observer:true,
+                // observeParents:true,
+                notNextTick: true,
+                loop: true, 
+                autoplay : 2000,
 			    //pagination: '.swiper-pagination',
 			    paginationClickable: true,
-			    autoplay : 2000,
+			    
                 //autoplayDisableOnInteraction : false,
                 uniqueNavElements: true	
             }
@@ -49,7 +57,8 @@ export default {
     components: {
         city,
         swiper,
-        swiperSlide
+        swiperSlide,
+        hot
     },
     methods: {
         // 获取swiper数据
@@ -62,6 +71,7 @@ export default {
     },
     created() {
         this.getSwiperData();
+        //console.log(this.swiper);
     }
 }
 </script>
@@ -76,10 +86,10 @@ export default {
         padding: 5px 25px;
         box-sizing: border-box;
     }
-    div.swiperImage {
+    .swiperImage {
         width: 100%;
-        height: 300px;
-        //background-image: url('../mock/images/1.jpg');
-        //background-position: cover;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
     }
 </style>
