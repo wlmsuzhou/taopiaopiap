@@ -17,7 +17,20 @@ export function getHotList () {
         var data = require('../mock/sh_hot.json');
         var error = 'error';
         if (data) {
-            reslove(data);
+            resolve(data);
+        } else {
+            reject(error);
+        }
+    });
+}
+
+//获取即将上映电影
+export function getComingList () {
+    return new Promise((resolve,reject) => {
+        var data = require('../mock/coming.json');
+        var error = 'error';
+        if (data) {
+            resolve(data);
         } else {
             reject(error);
         }

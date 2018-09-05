@@ -98,6 +98,9 @@ export default {
                 background: rgba(206, 198, 198, 0.21);
                 position: relative;
                 margin-bottom: 10px;
+                &:last-child {
+                    margin-bottom: 100px;
+                }
                 .buy {
                     position: absolute; 
                     right: 10px;
