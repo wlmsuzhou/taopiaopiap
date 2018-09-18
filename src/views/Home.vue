@@ -22,44 +22,20 @@
                     </swiper-slide> 
                 </swiper>
             </div>
-            <hot></hot>
+            <hot :hotList="hotList"></hot>
         </div>
         <div class="comingMov" v-show="!isHot">
             <ul>
-                <li>
-                    <div class="leftImage" v-lazy:background-image="'http://img1.imgtn.bdimg.com/it/u=4065566051,2509446432&fm=26&gp=0.jpg'">
+                <li v-for="item in comingList">
+                    <div class="leftImage" v-lazy:background-image="item.poster">
                     </div>
                     <div class="movInfo">
-                        <p class="movName">28岁未成年</p>
-                        <p class="count">10000人想看</p>
-                        <p class="act">导演：张末</p>
-                        <p class="act">主演：倪妮, 霍建华,马苏,王大陆</p>
-                        <div class="buy">
-                            <button>预售</button>
+                       <div class="movWrap">
+                            <p class="movName">{{item.showName}}</p>
+                            <p class="count">{{item.wantCount}}人想看</p>
+                            <p class="act">导演：{{item.director}}</p>
+                            <p class="act">主演：{{item.leadingRole}}</p>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="leftImage" v-lazy:background-image="'http://img1.imgtn.bdimg.com/it/u=4065566051,2509446432&fm=26&gp=0.jpg'">
-                    </div>
-                    <div class="movInfo">
-                        <p class="movName">28岁未成年</p>
-                        <p class="count">10000人想看</p>
-                        <p class="act">导演：张末</p>
-                        <p class="act">主演：倪妮, 霍建华,马苏,王大陆</p>
-                        <div class="buy">
-                            <button>预售</button>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="leftImage" v-lazy:background-image="'http://img1.imgtn.bdimg.com/it/u=4065566051,2509446432&fm=26&gp=0.jpg'">
-                    </div>
-                    <div class="movInfo">
-                        <p class="movName">28岁未成年</p>
-                        <p class="count">10000人想看</p>
-                        <p class="act">导演：张末</p>
-                        <p class="act">主演：倪妮, 霍建华,马苏,王大陆</p>
                         <div class="buy">
                             <button>预售</button>
                         </div>
@@ -74,7 +50,7 @@
 import city from '../components/Home/city'
 import hot from '../components/Home/hot'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import { getSwiper, getHotList } from '../service/myservice'
+import { getSwiper, getHotList, getComingList} from '../service/myservice'
 export default {
     data() {
         return {
@@ -92,7 +68,9 @@ export default {
                 uniqueNavElements: true	
             },
             slideShow: true,
-            isHot: true
+            isHot: true,
+            hotList: [],
+            comingList: []
         }
     },
     computed: {
@@ -105,6 +83,12 @@ export default {
         swiper,
         swiperSlide,
         hot
+    },
+    created() {
+        this.getSwiperData();
+        this.getHotListData();
+        this.getComingListData();
+        //console.log(this.swiper);
     },
     methods: {
         // 获取swiper数据
@@ -120,11 +104,21 @@ export default {
         changeRightTab() {
            //this.slideShow = !this.slideShow;
            this.isHot = false;
+        },
+        //获取热映列表
+        getHotListData() {
+            var self = this;
+            getHotList().then((data) => {
+                self.hotList = data.data.returnValue;
+            });
+        },
+        // 获取即将上映的电影
+        getComingListData() {
+            var self = this;
+            getComingList().then((data) => {
+                self.comingList = data.data.returnValue;
+            });
         }
-    },
-    created() {
-        this.getSwiperData();
-        //console.log(this.swiper);
     }
 }
 </script>
@@ -132,7 +126,7 @@ export default {
 <style lang="less">
 body {
     padding: 0px;
-}
+}   
     header.navHeader {
         background: #fff;
         height: 30px;
@@ -189,20 +183,26 @@ body {
                     text-align: left;
                     margin-left: 10px;
                     position: relative;
-                    p {
-                        font-size: 14px;
-                        margin: 5px;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        &.movName {
-                            font-size: 16px;
-                        }
-                        &.count {
-                            font-size: 12px;
-                            color: orange;
-                        }
-                        &.act {
-                            color: #aaa;
+                    .movWrap {
+                       //width: 50%;
+                       box-sizing: content-box;
+                        p {
+                            font-size: 14px;
+                            margin: 5px;
+                            width: 200px;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            &.movName {
+                                font-size: 16px;
+                            }
+                            &.count {
+                                font-size: 12px;
+                                color: orange;
+                            }
+                            &.act {
+                                color: #aaa;
+                            }
                         }
                     }
                     .buy {

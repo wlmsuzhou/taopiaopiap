@@ -14,7 +14,7 @@ export function getSwiper () {
 //获取热映电影
 export function getHotList () {
     return new Promise ((resolve,reject) => {
-        var data = require('../mock/sh_hot.json');
+        var data = require('../mock/bj_hot.json');
         var error = 'error';
         if (data) {
             resolve(data);

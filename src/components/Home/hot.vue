@@ -1,71 +1,23 @@
 <template>
     <div class="hotMovie">
         <ul>
-            <li>
+            <li v-for="item in hotList">
                 <div class="movieImage">
-                    <div class="moImg" v-lazy:background-image="'http://img1.imgtn.bdimg.com/it/u=4065566051,2509446432&fm=26&gp=0.jpg'">
+                    <div class="moImg" v-lazy:background-image="item.poster">
                     </div>
                 </div>
                 <div class="buy">
                     <button class="btn">购买</button>
                 </div>
                 <div class="movieInfo">
-                    <h3>你的名字</h3>
+                    <h3>{{item.showName}}</h3>
                     <div class="full-star">
                         <div class="score-star"></div>
                         <div class="score">9.4</div>
                     </div>
                     <div class="des">
-                        <p>所有的相遇，都是久别重逢</p>
-                        <p>上白石萌音,佟心竹,神木隆佐助</p>
-                    </div>
-                    <div class="act">
-                        <span class="one">1212五折狂欢</span>
-                        <span>1212特惠抢票</span>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="movieImage">
-                    <div class="moImg" v-lazy:background-image="'http://img1.imgtn.bdimg.com/it/u=4065566051,2509446432&fm=26&gp=0.jpg'">
-                    </div>
-                </div>
-                <div class="buy">
-                    <button class="btn">购买</button>
-                </div>
-                <div class="movieInfo">
-                    <h3>你的名字</h3>
-                    <div class="full-star">
-                        <div class="score-star"></div>
-                        <div class="score">9.4</div>
-                    </div>
-                    <div class="des">
-                        <p>所有的相遇，都是久别重逢</p>
-                        <p>上白石萌音,佟心竹,神木隆佐助</p>
-                    </div>
-                    <div class="act">
-                        <span class="one">1212五折狂欢</span>
-                        <span>1212特惠抢票</span>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="movieImage">
-                    <div class="moImg" v-lazy:background-image="'http://img1.imgtn.bdimg.com/it/u=4065566051,2509446432&fm=26&gp=0.jpg'">
-                    </div>
-                </div>
-                <div class="buy">
-                    <button class="btn">购买</button>
-                </div>
-                <div class="movieInfo">
-                    <h3>你的名字</h3>
-                    <div class="full-star">
-                        <div class="score-star"></div>
-                        <div class="score">9.4</div>
-                    </div>
-                    <div class="des">
-                        <p>所有的相遇，都是久别重逢</p>
-                        <p>上白石萌音,佟心竹,神木隆佐助</p>
+                        <p>{{item.highlight}}</p>
+                        <p>{{item.leadingRole}}</p>
                     </div>
                     <div class="act">
                         <span class="one">1212五折狂欢</span>
@@ -78,7 +30,16 @@
 </template>
 <script>
 export default {
-    
+    data () {
+        return {
+        }
+    },
+    props:{
+        'hotList': {
+            type: Array,
+            default: () => []
+        }
+    }
 }
 </script>
 <style lang="less">
@@ -160,7 +121,7 @@ export default {
                     }
                     .des {
                         color: rgb(194, 187, 187);
-                        width: 80%;
+                        width: 200px;
                         //white-space: nowrap;
                         p {
                             font-size: 13px;
