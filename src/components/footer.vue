@@ -2,22 +2,52 @@
     <div class="foot">
         <ul>
             <li>
-                <img  src="../assets/images/hno.svg" alt="">
-                <div>电影</div>
+                <router-link to="/">
+                    <div>
+                        <img  v-show="route !== '/'" src="../assets/images/hno.svg" alt="">
+                        <img  v-show="route === '/'" src="../assets/images/hok.svg" alt="">
+                        <div class="nav">电影</div>
+                    </div>
+                </router-link>
+                
             </li>
             <li>
-                <img src="../assets/images/mno.svg" alt="">
-                <div>影院</div>
+                <router-link to="cinema">
+                    <div>
+                        <img v-show="route !== '/cinema'" src="../assets/images/mno.svg" alt="">
+                        <img v-show="route === '/cinema'" src="../assets/images/mok.svg" alt="">
+                        <div class="nav">影院</div>
+                    </div>
+                </router-link>
             </li>
             <li>
-                <img src="../assets/images/eno.svg" alt="">
-                <div>我的</div>
+                <router-link to="/me">
+                    <div>
+                        <img v-show="route !== '/me'" src="../assets/images/eno.svg" alt="">
+                        <img v-show="route === '/me'" src="../assets/images/eok.svg" alt="">
+                        <div class="nav">我的</div>
+                    </div>
+                </router-link>
+                
             </li>
         </ul>
     </div>
 </template>
 <script>
 export default {
+    data() {
+        return {
+
+        }
+    },
+    computed: {
+        route() {
+            return this.$route.path;
+        }
+    },
+    mounted() {
+        console.log(this.route);
+    }
 }
 </script>
 <style lang="less">
@@ -41,5 +71,9 @@ export default {
                 list-style: none;
             }
         }
+    }
+    a {
+        text-decoration: none;
+        color: #aaa;
     }
 </style>
