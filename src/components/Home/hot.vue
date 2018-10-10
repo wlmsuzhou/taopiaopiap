@@ -1,30 +1,33 @@
 <template>
     <div class="hotMovie">
         <ul>
-            <li v-for="item in hotList">
-                <div class="movieImage">
-                    <div class="moImg" v-lazy:background-image="item.poster">
+            <router-link to="movieDetail">
+                <li v-for="item in hotList">
+                    <div class="movieImage">
+                        <div class="moImg" v-lazy:background-image="item.poster">
+                        </div>
                     </div>
-                </div>
-                <div class="buy">
-                    <button class="btn">购买</button>
-                </div>
-                <div class="movieInfo">
-                    <h3>{{item.showName}}</h3>
-                    <div class="full-star">
-                        <div class="score-star"></div>
-                        <div class="score">9.4</div>
+                    <div class="buy">
+                        <button class="btn">购买</button>
                     </div>
-                    <div class="des">
-                        <p>{{item.highlight}}</p>
-                        <p>{{item.leadingRole}}</p>
+                    <div class="movieInfo">
+                        <h3>{{item.showName}}</h3>
+                        <div class="full-star">
+                            <div class="score-star"></div>
+                            <div class="score">9.4</div>
+                        </div>
+                        <div class="des">
+                            <p>{{item.highlight}}</p>
+                            <p>{{item.leadingRole}}</p>
+                        </div>
+                        <div class="act">
+                            <span class="one">1212五折狂欢</span>
+                            <span>1212特惠抢票</span>
+                        </div>
                     </div>
-                    <div class="act">
-                        <span class="one">1212五折狂欢</span>
-                        <span>1212特惠抢票</span>
-                    </div>
-                </div>
-            </li>
+                </li>
+            </router-link>
+            
         </ul>
     </div>
 </template>
