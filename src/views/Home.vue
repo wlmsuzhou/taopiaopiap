@@ -50,7 +50,8 @@
 import city from '../components/Home/city'
 import hot from '../components/Home/hot'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import { getSwiper, getHotList, getComingList} from '../service/myservice'
+// import { getSwiper, getHotList, getComingList} from '../service/myservice'
+import { getSwiperApi , getHotList , getComingList} from '../service/api'
 export default {
     data() {
         return {
@@ -94,9 +95,12 @@ export default {
         // 获取swiper数据
         getSwiperData () {
             var self = this;
-            getSwiper().then ((data) => {
+            getSwiperApi().then((data) => {
                 self.imgs = data.data.returnValue;
             });
+            // getSwiper().then ((data) => {
+            //     self.imgs = data.data.returnValue;
+            // });
         },
         changeHotTab() {
             this.isHot = true;

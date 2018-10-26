@@ -15,6 +15,7 @@ let dealfn = {
                 }
             })
         });
+        return promise;
     },
 
     /**
@@ -32,5 +33,7 @@ let dealfn = {
                 }
             });
         });
+        return promise;
     }
 }
+module.exports = dealfn;
