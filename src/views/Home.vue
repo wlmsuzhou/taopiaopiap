@@ -1,9 +1,10 @@
 <template>
     <div>
+        <city></city>
         <header class="navHeader">
             <div class="city">
-                <span class="cityName">北京</span>
-                <span class="city-arrow-icon vm"></span>
+                <span class="cityName" >北京</span>
+                <span class="city-arrow-icon vm"></span> 
             </div>
             <div class="hotMov" :class="{active: isHot}" @click="changeHotTab()">
                 <span>正在热映</span>
@@ -130,7 +131,14 @@ export default {
 <style lang="less">
 body {
     padding: 0px;
-}   
+}
+.city {
+    .city-arrow-icon {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+    }
+}
     header.navHeader {
         background: #fff;
         height: 30px;
